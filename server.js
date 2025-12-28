@@ -15,12 +15,24 @@ const express= require('express')
 
 const app = express()
 
-//middleware
+//controllers
 const morgan =require('morgan')
+const petCtrl= require('./controllers/pets')
+
+//middleware
 
 app.use(morgan('dev'))
 
-app.use(express.json())
+app.use(express.json())  // to accept json from postman
+
+
+// routes 
+
+app.use('/pets', petCtrl)
+
+
+
+
 
 app.listen(3000, ()=>{
     console.log('the express app is ready')
