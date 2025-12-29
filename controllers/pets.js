@@ -108,6 +108,31 @@ router.delete('/:id', async (req, res)=>{
 
 })
 
+//PUT + /pets/123
+router.put('/:id', async (req,res)=>{
+    try{
+
+        //get id
+        const {id} =req.params
+        // find pet using id and update with req.body add new to see change immediatly with out it it will not show on postman whwn put
+        const pet = await Pet.findByIdAndUpdate(id, req.body, {new:true})
+
+
+        if(!pet){
+            res.status(404).json({error: 'Pet Not found'})
+
+        }else{
+               res.status(200).json({pet})
+        }
+    }
+    catch(error){
+        console.log(error)
+        res.status(500).json({error: 'failed to update pet'})
+    }
+
+
+})
+
 // export the router (fixed)
 module.exports = router
 
