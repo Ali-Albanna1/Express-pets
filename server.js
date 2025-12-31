@@ -13,6 +13,8 @@ mongoose.connection.on('connected', () => {console.log('conected to DB')})
 
 const express= require('express')
 
+const cors = require('cors')
+
 const app = express()
 
 //controllers
@@ -20,7 +22,7 @@ const morgan =require('morgan')
 const petCtrl= require('./controllers/pets')
 
 //middleware
-
+app.use(cors()) // allow aything exept any port for now its okay but if deploy needs to be changed
 app.use(morgan('dev'))
 
 app.use(express.json())  // to accept json from postman

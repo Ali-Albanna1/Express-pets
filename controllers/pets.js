@@ -30,8 +30,8 @@ catch(error){
 router.get('/', async (req,res)=>{
 
     try{
-         const allPets = await Pet.find({})
-         res.status(200).json({allPets})
+         const pet = await Pet.find({})
+         res.status(200).json({pet})
     }
     catch(error){
      console.log(error)
@@ -50,18 +50,18 @@ router.get('/:id', async (req, res) => {
 
        // use model to find by id
 
-       const foundPet = await Pet.findById(id)
+       const pet = await Pet.findById(id)
 
        //if the pet not founded respond with 404
 
-       if(!foundPet) {
+       if(!pet) {
 
         res.status(404).json({error: 'Pet not found'})
 
         //else send 200 with pet
        }else{
            
-        res.status(200).json({foundPet})
+        res.status(200).json({pet})
 
        }
 
